@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keofi - Great coffee good vibes</title>
+  <meta name="title" content="Keofi - Great coffee good vibes">
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Oswald:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+  <style>
+    .cart-summary {
+      background: #000000;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .cart-summary h3 {
+      margin-bottom: 20px;
+    }
+    .cart-summary p, .cart-summary ul {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    .cart-summary ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cart-summary ul li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .cart-summary ul li button {
+      background: #e3342f;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cart-summary ul li button:hover {
+      background: #cc1f1a;
+    }
+    .checkout-btn, .book-table-btn {
+      display: block;
+      width: 100%;
+      background: #38c172;
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .checkout-btn:hover, .book-table-btn:hover {
+      background: #2d995b;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .modal-content input, .modal-content select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .proceed-btn {
+      width: 100%;
+      padding: 10px;
+      background: #38c172;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .proceed-btn:hover {
+      background: #2d995b;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <p class="header-top-text">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+          <span class="span">Opening Hours :</span> 08:00 Am - 09:00 Pm
+        </p>
+        <ul class="social-list">
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+        </ul>
+        <p class="header-top-text">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+          <span class="span">Location :</span> 55 Main Street, New York
+        </p>
+      </div>
+    </div>
+    <div class="header-bottom" data-header>
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.svg" width="216" height="80" alt="keofi home" class="w-100">
+        </a>
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list">
+            <li>
+              <a href="#home" class="navbar-link" data-nav-link>Home</a>
+            </li>
+            <li>
+              <a href="#about" class="navbar-link" data-nav-link>About</a>
+            </li>
+            <li>
+              <a href="#menu" class="navbar-link" data-nav-link>Menu</a>
+            </li>
+            
+            <li>
+              <a href="#contactus" class="navbar-link" data-nav-link>Contacts</a>
+            </li>
+          </ul>
+          <a href="#" class="btn btn-primary book-table-btn">Book A Table</a>
+        </nav>
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <span class="span"></span>
+          <span class="span"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="section hero has-bg-image" id="home" aria-labelledby="hero-label" style="background-image: url('./assets/images/hero-banner.jpg')">
+        <div class="container">
+          <p class="section-subtitle has-before reveal-left" data-reveal>Welcome to the keofi</p>
+          <h1 class="h1 hero-title reveal-left" id="hero-label" data-reveal>Great Coffee Good Vibes</h1>
+          <div class="btn-group reveal-left" data-reveal>
+            <a href="#" class="btn btn-primary">
+              <span class="span">Explore more</span>
+              <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about" id="about" aria-labelledby="about-label">
+        <div class="container">
+          <div class="about-content">
+            <p class="section-subtitle reveal-left" id="about-label" data-reveal>About Us</p>
+            <h2 class="h2 section-title reveal-left" data-reveal>Organic & Fresh Coffee Provider Center</h2>
+            <p class="section-text reveal-left" data-reveal>
+              Sed ut perspiciatis unde omnis iste natus error voluptate accusantium doloremque laudantium, totam rem
+              aperiam eaque ipsa quae abillo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              Nemo enim ipsluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores
+              eos qui ratione
+            </p>
+            <div class="about-card reveal-left" data-reveal>
+              <figure class="card-banner img-holder" style="--width: 95; --height: 95;">
+                <img src="./assets/images/about-img.png" width="95" height="95" loading="lazy" alt="john doe" class="img-cover">
+              </figure>
+              <p class="card-text">
+                Quis autem vel eum iure reprehenderit in ealuptate velit esse molestiae
+              </p>
+            </div>
+          </div>
+          <figure class="about-banner reveal-right" data-reveal>
+            <img src="./assets/images/about-banner.png" width="686" height="544" loading="lazy" alt="about banner" class="w-100">
+          </figure>
+        </div>
+      </section>
+
+      
+
+      <section class="section menu has-bg-image" id="menu" aria-labelledby="menu-label" style="background-image: url('./assets/images/menu-bg.jpg')">
+        <div class="container">
+          <p class="section-subtitle text-center" data-reveal>Choose Best Coffee</p>
+          <h2 class="h2 section-title text-center" id="menu-label" data-reveal>Kaffen Popular Coffee Menu</h2>
+          <ul class="grid-list" style="background-image: url('./assets/images/menu-bg-logo.png')">
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-1.jpg" width="200" height="200" loading="lazy" alt="Americano Coffee" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Americano Coffee</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="360">₹360</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-2.jpg" width="200" height="200" loading="lazy" alt="Espresso Coffee" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Espresso Coffee</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="360">₹360</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-3.jpg" width="200" height="200" loading="lazy" alt="Barista Pouring Syrup" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Barista Pouring Syrup</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="260">₹260</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-4.jpg" width="200" height="200" loading="lazy" alt="Cold - Coffee" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Cold - Coffee</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="480">₹480</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-5.jpg" width="200" height="200" loading="lazy" alt="Cappuccino Arabica" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Cappuccino Arabica</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="224">₹224</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-card" data-reveal>
+                <figure class="card-banner img-holder" style="--width: 200; --height: 200;">
+                  <img src="./assets/images/menu-6.jpg" width="200" height="200" loading="lazy" alt="Milk Cream Coffee" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3 card-title">Milk Cream Coffee</h3>
+                  <p class="card-text">2/3 espresso, 1/3 steamed milk</p>
+                  <data class="card-price has-before" value="600">₹600</data>
+                  <button class="add-to-cart btn">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section cart-summary" aria-labelledby="cart-summary-label">
+        <div class="container">
+          <h3 class="h3 section-title text-center" id="cart-summary-label" data-reveal>Cart Summary</h3>
+          <p>Total Items: <span id="total-items">0</span></p>
+          <p>Total Amount: ₹<span id="total-amount">0.00</span></p>
+          <ul id="cart-items"></ul>
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer" id="contactus" >
+    <div class="container">
+      <div class="footer-top section" data-reveal>
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="216" height="80" class="w-100" alt="Keofi home">
+          </a>
+        </div>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Working Hours</p>
+          </li>
+          <li class="footer-list-item">
+            <p>Sunday - Thursday</p>
+            <span class="span">08:00 am - 09:00pm</span>
+          </li>
+          <li class="footer-list-item">
+            <p>Only Friday</p>
+            <span class="span">03:00 pm - 09:00pm</span>
+          </li>
+          <li>
+            <strong class="strong">Saturday Close</strong>
+          </li>
+        </ul>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Contact Us</p>
+          </li>
+          <li>
+            <div class="wrapper">
+              <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+              <div>
+                <span class="span">Location :</span>
+                <p>55 Main Street, New York</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="wrapper">
+              <ion-icon name="mail-unread-outline" aria-hidden="true"></ion-icon>
+              <div>
+                <span class="span">Email Address :</span>
+                <p>keofi@gmail.com</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="wrapper">
+              <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+              <div>
+                <span class="span">Phone Number :</span>
+                <p>+012 (345) 678 99</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Gallery</p>
+          </li>
+          <li>
+            <ul class="grid-list">
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-1.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-2.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-3.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-4.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-5.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+              <li>
+                <div class="grid-item">
+                  <img src="./assets/images/gallery-1.jpg" width="80" height="80" loading="lazy" alt="Gallery" class="w-100">
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          Made by Mohammadi Khan
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Checkout</h2>
+      <form id="checkoutForm">
+        <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
+        <input type="text" id="userPhone" name="userPhone" placeholder="Enter your phone number" required>
+        <input type="text" id="deliveryAddress" name="deliveryAddress" placeholder="Enter your delivery address" required>
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="Credit/Debit Card">Credit/Debit Card</option>
+          <option value="UPI">UPI</option>
+        </select>
+        <button type="button" class="proceed-btn" id="proceedCheckout">Proceed</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Book Table Modal -->
+  <div id="bookTableModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Book a Table</h2>
+      <form id="bookTableForm">
+        <input type="text" id="tableName" name="tableName" placeholder="Enter your name" required>
+        <input type="text" id="tablePhone" name="tablePhone" placeholder="Enter your phone number" required>
+        <input type="date" id="tableDate" name="tableDate" required>
+        <input type="time" id="tableTime" name="tableTime" required>
+        <input type="number" id="tablePeople" name="tablePeople" placeholder="Number of people" required>
+        <button type="button" class="proceed-btn" id="proceedBookTable">Proceed</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyBp9avW_4FTQJfepzIe4NjJYXB1RNdgqi4",
+        authDomain: "coffeeshopproject-b197f.firebaseapp.com",
+        projectId: "coffeeshopproject-b197f",
+        storageBucket: "coffeeshopproject-b197f.appspot.com",
+        messagingSenderId: "489374523749",
+        appId: "1:489374523749:web:0901fb66db31167793418c",
+        measurementId: "G-6CYRCK554P"
+
+        };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    
+    let totalItems = 0;
+    let totalAmount = 0;
+    let cartItems = [];
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const itemName = this.parentElement.querySelector('.card-title').textContent;
+        const itemPrice = parseFloat(this.previousElementSibling.getAttribute('value'));
+        
+        totalItems += 1;
+        totalAmount += itemPrice;
+        cartItems.push({ name: itemName, price: itemPrice });
+
+        document.getElementById('total-items').textContent = totalItems;
+        document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        updateCartItems();
+      });
+    });
+
+    function updateCartItems() {
+      const cartItemsList = document.getElementById('cart-items');
+      cartItemsList.innerHTML = '';
+      cartItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} - ₹${item.price.toFixed(2)} <button onclick="removeItem(${index})">Remove</button>`;
+        cartItemsList.appendChild(li);
+      });
+    }
+
+    function removeItem(index) {
+      totalItems -= 1;
+      totalAmount -= cartItems[index].price;
+      cartItems.splice(index, 1);
+
+      document.getElementById('total-items').textContent = totalItems;
+      document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+      updateCartItems();
+    }
+
+    const modals = {
+      checkout: document.getElementById("checkoutModal"),
+      bookTable: document.getElementById("bookTableModal")
+    };
+
+    const openModalButtons = {
+      checkout: document.querySelector(".checkout-btn"),
+      bookTable: document.querySelector(".book-table-btn")
+    };
+
+    const closeModalButtons = document.getElementsByClassName("close");
+
+    for (let button in openModalButtons) {
+      openModalButtons[button].onclick = function() {
+        modals[button].style.display = "block";
+      };
+    }
+
+    for (let i = 0; i < closeModalButtons.length; i++) {
+      closeModalButtons[i].onclick = function() {
+        this.parentElement.parentElement.style.display = "none";
+      };
+    }
+
+    window.onclick = function(event) {
+      for (let modal in modals) {
+        if (event.target == modals[modal]) {
+          modals[modal].style.display = "none";
+        }
+      }
+    }
+
+    document.getElementById('proceedCheckout').addEventListener('click', async function() {
+      const userName = document.getElementById('userName').value;
+      const userPhone = document.getElementById('userPhone').value;
+      const deliveryAddress = document.getElementById('deliveryAddress').value;
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      if(userName && userPhone && deliveryAddress && paymentMethod) {
+        try {
+          await addDoc(collection(db, "orders"), {
+            userName: userName,
+            userPhone: userPhone,
+            deliveryAddress: deliveryAddress,
+            paymentMethod: paymentMethod,
+            items: cartItems,
+            totalAmount: totalAmount
+          });
+          alert(`Thank you, ${userName}! Your order has been placed. We will contact you at ${userPhone} for further details.`);
+          modals.checkout.style.display = "none";
+        } catch (e) {
+          console.error("Error adding document: ", e);
+          alert("There was an error placing your order. Please try again.");
+        }
+      }
+    });
+
+    document.getElementById('proceedBookTable').addEventListener('click', async function() {
+      const tableName = document.getElementById('tableName').value;
+      const tablePhone = document.getElementById('tablePhone').value;
+      const tableDate = document.getElementById('tableDate').value;
+      const tableTime = document.getElementById('tableTime').value;
+      const tablePeople = document.getElementById('tablePeople').value;
+      if(tableName && tablePhone && tableDate && tableTime && tablePeople) {
+        try {
+          await addDoc(collection(db, "tableBookings"), {
+            tableName: tableName,
+            tablePhone: tablePhone,
+            tableDate: tableDate,
+            tableTime: tableTime,
+            tablePeople: tablePeople
+          });
+          alert(`Thank you, ${tableName}! Your table booking has been placed. We will contact you at ${tablePhone} for further details.`);
+          modals.bookTable.style.display = "none";
+        } catch (e) {
+          console.error("Error adding document: ", e);
+          alert("There was an error placing your table booking. Please try again.");
+        }
+      }
+    });
+  </script>
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
