@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Oswald:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     .cart-summary {
       background: #000000;
@@ -21,23 +23,29 @@
       margin: 20px 0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .cart-summary h3 {
       margin-bottom: 20px;
     }
-    .cart-summary p, .cart-summary ul {
+
+    .cart-summary p,
+    .cart-summary ul {
       margin: 10px 0;
       font-size: 18px;
     }
+
     .cart-summary ul {
       list-style: none;
       padding: 0;
     }
+
     .cart-summary ul li {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
+
     .cart-summary ul li button {
       background: #e3342f;
       border: none;
@@ -46,10 +54,13 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .cart-summary ul li button:hover {
       background: #cc1f1a;
     }
-    .checkout-btn, .book-table-btn {
+
+    .checkout-btn,
+    .book-table-btn {
       display: block;
       width: 100%;
       background: #38c172;
@@ -61,9 +72,12 @@
       cursor: pointer;
       margin-top: 20px;
     }
-    .checkout-btn:hover, .book-table-btn:hover {
+
+    .checkout-btn:hover,
+    .book-table-btn:hover {
       background: #2d995b;
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -73,10 +87,11 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgb(0,0,0);
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
       padding-top: 60px;
     }
+
     .modal-content {
       background-color: #fefefe;
       margin: 5% auto;
@@ -86,25 +101,30 @@
       max-width: 500px;
       border-radius: 10px;
     }
+
     .close {
       color: #aaa;
       float: right;
       font-size: 28px;
       font-weight: bold;
     }
+
     .close:hover,
     .close:focus {
       color: black;
       text-decoration: none;
       cursor: pointer;
     }
-    .modal-content input, .modal-content select {
+
+    .modal-content input,
+    .modal-content select {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     .proceed-btn {
       width: 100%;
       padding: 10px;
@@ -114,8 +134,49 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .proceed-btn:hover {
       background: #2d995b;
+    }
+
+    .table-status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .table-status .table {
+      padding: 20px;
+      text-align: center;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .table-status .table .icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
+
+    .table-status .booked {
+      background-color: red;
+    }
+
+    .table-status .available {
+      background-color: green;
+    }
+
+    .table-status .selected {
+      background-color: blue;
     }
   </style>
 </head>
@@ -172,7 +233,6 @@
             <li>
               <a href="#menu" class="navbar-link" data-nav-link>Menu</a>
             </li>
-            
             <li>
               <a href="#contactus" class="navbar-link" data-nav-link>Contacts</a>
             </li>
@@ -201,31 +261,28 @@
           </div>
         </div>
       </section>
-<section class="section about" id="about" aria-labelledby="about-label">
-  <div class="container">
-    <div class="about-content">
-      <p class="section-subtitle reveal-left" id="about-label" data-reveal>About Us</p>
-      <h2 class="h2 section-title reveal-left" data-reveal>Organic & Fresh Coffee Provider Center</h2>
-      <p class="section-text reveal-left" data-reveal>
-        We strive to provide the best organic and fresh coffee. Our commitment is to quality and excellence in every cup. We believe in the beauty of simplicity and the power of nature to create the perfect coffee experience.
-      </p>
-      <div class="about-card reveal-left" data-reveal>
-        <figure class="card-banner img-holder" style="--width: 95; --height: 95;">
-          <img src="./assets/images/about-img.png" width="95" height="95" loading="lazy" alt="John Doe" class="img-cover">
-        </figure>
-        <p class="card-text">
-          Our team is dedicated to ensuring that each visit to our center is a memorable one. We take pride in our work and are always here to provide you with the best service.
-        </p>
-      </div>
-    </div>
-    <figure class="about-banner reveal-right" data-reveal>
-      <img src="./assets/images/about-banner.png" width="686" height="544" loading="lazy" alt="about banner" class="w-100">
-    </figure>
-  </div>
-</section>
-
-
-      
+      <section class="section about" id="about" aria-labelledby="about-label">
+        <div class="container">
+          <div class="about-content">
+            <p class="section-subtitle reveal-left" id="about-label" data-reveal>About Us</p>
+            <h2 class="h2 section-title reveal-left" data-reveal>Organic & Fresh Coffee Provider Center</h2>
+            <p class="section-text reveal-left" data-reveal>
+              We strive to provide the best organic and fresh coffee. Our commitment is to quality and excellence in every cup. We believe in the beauty of simplicity and the power of nature to create the perfect coffee experience.
+            </p>
+            <div class="about-card reveal-left" data-reveal>
+              <figure class="card-banner img-holder" style="--width: 95; --height: 95;">
+                <img src="./assets/images/about-img.png" width="95" height="95" loading="lazy" alt="John Doe" class="img-cover">
+              </figure>
+              <p class="card-text">
+                Our team is dedicated to ensuring that each visit to our center is a memorable one. We take pride in our work and are always here to provide you with the best service.
+              </p>
+            </div>
+          </div>
+          <figure class="about-banner reveal-right" data-reveal>
+            <img src="./assets/images/about-banner.png" width="686" height="544" loading="lazy" alt="about banner" class="w-100">
+          </figure>
+        </div>
+      </section>
 
       <section class="section menu has-bg-image" id="menu" aria-labelledby="menu-label" style="background-image: url('./assets/images/menu-bg.jpg')">
         <div class="container">
@@ -326,7 +383,7 @@
     </article>
   </main>
 
-  <footer class="footer" id="contactus" >
+  <footer class="footer" id="contactus">
     <div class="container">
       <div class="footer-top section" data-reveal>
         <div class="footer-brand">
@@ -437,7 +494,7 @@
       <h2>Checkout</h2>
       <form id="checkoutForm">
         <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
-        <input type="text" id="userPhone" name="userPhone" placeholder="Enter your phone number" required>
+        <input type="text" id="userPhone" name="userPhone" placeholder="Enter your phone number" pattern="\d{10}" title="Enter a valid 10-digit phone number" required>
         <input type="text" id="deliveryAddress" name="deliveryAddress" placeholder="Enter your delivery address" required>
         <label for="paymentMethod">Payment Method:</label>
         <select id="paymentMethod" name="paymentMethod" required>
@@ -455,11 +512,40 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Book a Table</h2>
+      <div class="table-status">
+        <div id="table1" class="table available" data-table-id="1" data-seats="2">
+          <i class="fas fa-concierge-bell icon"></i> Table 1 - 2 seats
+        </div>
+        <div id="table2" class="table available" data-table-id="2" data-seats="2">
+          <i class="fas fa-concierge-bell icon"></i> Table 2 - 2 seats
+        </div>
+        <div id="table3" class="table available" data-table-id="3" data-seats="4">
+          <i class="fas fa-concierge-bell icon"></i> Table 3 - 4 seats
+        </div>
+        <div id="table4" class="table available" data-table-id="4" data-seats="4">
+          <i class="fas fa-concierge-bell icon"></i> Table 4 - 4 seats
+        </div>
+        <div id="table5" class="table available" data-table-id="5" data-seats="6">
+          <i class="fas fa-concierge-bell icon"></i> Table 5 - 6 seats
+        </div>
+        <div id="table6" class="table available" data-table-id="6" data-seats="6">
+          <i class="fas fa-concierge-bell icon"></i> Table 6 - 6 seats
+        </div>
+        <div id="table7" class="table available" data-table-id="7" data-seats="8">
+          <i class="fas fa-concierge-bell icon"></i> Table 7 - 8 seats
+        </div>
+        <div id="table8" class="table available" data-table-id="8" data-seats="8">
+          <i class="fas fa-concierge-bell icon"></i> Table 8 - 8 seats
+        </div>
+        <div id="table9" class="table available" data-table-id="9" data-seats="10">
+          <i class="fas fa-concierge-bell icon"></i> Table 9 - 10 seats
+        </div>
+      </div>
       <form id="bookTableForm">
+        <input type="hidden" id="selectedTable" name="selectedTable" required>
         <input type="text" id="tableName" name="tableName" placeholder="Enter your name" required>
-        <input type="text" id="tablePhone" name="tablePhone" placeholder="Enter your phone number" required>
-        <input type="date" id="tableDate" name="tableDate" required>
-        <input type="time" id="tableTime" name="tableTime" required>
+        <input type="text" id="tablePhone" name="tablePhone" placeholder="Enter your phone number" pattern="\d{10}" title="Enter a valid 10-digit phone number" required>
+        <input type="hidden" id="tableDate" name="tableDate">
         <input type="number" id="tablePeople" name="tablePeople" placeholder="Number of people" required>
         <button type="button" class="proceed-btn" id="proceedBookTable">Proceed</button>
       </form>
@@ -467,38 +553,34 @@
   </div>
 
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-    
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
     const firebaseConfig = {
-        apiKey: "AIzaSyBp9avW_4FTQJfepzIe4NjJYXB1RNdgqi4",
-        authDomain: "coffeeshopproject-b197f.firebaseapp.com",
-        projectId: "coffeeshopproject-b197f",
-        storageBucket: "coffeeshopproject-b197f.appspot.com",
-        messagingSenderId: "489374523749",
-        appId: "1:489374523749:web:0901fb66db31167793418c",
-        measurementId: "G-6CYRCK554P"
+      apiKey: "AIzaSyBp9avW_4FTQJfepzIe4NjJYXB1RNdgqi4",
+      authDomain: "coffeeshopproject-b197f.firebaseapp.com",
+      projectId: "coffeeshopproject-b197f",
+      storageBucket: "coffeeshopproject-b197f.appspot.com",
+      messagingSenderId: "489374523749",
+      appId: "1:489374523749:web:0901fb66db31167793418c",
+      measurementId: "G-6CYRCK554P"
+    };
 
-        };
-
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
-    
+
     let totalItems = 0;
     let totalAmount = 0;
     let cartItems = [];
+    let selectedTable = null;
 
     document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', function() {
+      button.addEventListener('click', function () {
         const itemName = this.parentElement.querySelector('.card-title').textContent;
         const itemPrice = parseFloat(this.previousElementSibling.getAttribute('value'));
-        
+
         totalItems += 1;
         totalAmount += itemPrice;
         cartItems.push({ name: itemName, price: itemPrice });
@@ -542,18 +624,21 @@
     const closeModalButtons = document.getElementsByClassName("close");
 
     for (let button in openModalButtons) {
-      openModalButtons[button].onclick = function() {
+      openModalButtons[button].onclick = function () {
         modals[button].style.display = "block";
+        if (button === "bookTable") {
+          updateTableStatus();
+        }
       };
     }
 
     for (let i = 0; i < closeModalButtons.length; i++) {
-      closeModalButtons[i].onclick = function() {
+      closeModalButtons[i].onclick = function () {
         this.parentElement.parentElement.style.display = "none";
       };
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       for (let modal in modals) {
         if (event.target == modals[modal]) {
           modals[modal].style.display = "none";
@@ -561,12 +646,12 @@
       }
     }
 
-    document.getElementById('proceedCheckout').addEventListener('click', async function() {
+    document.getElementById('proceedCheckout').addEventListener('click', async function () {
       const userName = document.getElementById('userName').value;
       const userPhone = document.getElementById('userPhone').value;
       const deliveryAddress = document.getElementById('deliveryAddress').value;
       const paymentMethod = document.getElementById('paymentMethod').value;
-      if(userName && userPhone && deliveryAddress && paymentMethod) {
+      if (userName && userPhone && deliveryAddress && paymentMethod) {
         try {
           await addDoc(collection(db, "orders"), {
             userName: userName,
@@ -582,31 +667,77 @@
           console.error("Error adding document: ", e);
           alert("There was an error placing your order. Please try again.");
         }
+      } else {
+        alert("Please fill in all fields.");
       }
     });
 
-    document.getElementById('proceedBookTable').addEventListener('click', async function() {
+    document.querySelectorAll('.table').forEach(table => {
+      table.addEventListener('click', function () {
+        if (this.classList.contains('available')) {
+          if (selectedTable) {
+            document.getElementById(selectedTable).classList.remove('selected');
+            document.getElementById(selectedTable).classList.add('available');
+          }
+          selectedTable = this.id;
+          this.classList.remove('available');
+          this.classList.add('selected');
+          document.getElementById('selectedTable').value = this.getAttribute('data-table-id');
+        }
+      });
+    });
+
+    document.getElementById('proceedBookTable').addEventListener('click', async function () {
       const tableName = document.getElementById('tableName').value;
       const tablePhone = document.getElementById('tablePhone').value;
-      const tableDate = document.getElementById('tableDate').value;
-      const tableTime = document.getElementById('tableTime').value;
+      const tableDate = new Date().toISOString().split('T')[0];
       const tablePeople = document.getElementById('tablePeople').value;
-      if(tableName && tablePhone && tableDate && tableTime && tablePeople) {
+      const selectedTableId = document.getElementById('selectedTable').value;
+
+      if (tableName && tablePhone && tableDate && tablePeople && selectedTableId) {
         try {
           await addDoc(collection(db, "tableBookings"), {
             tableName: tableName,
             tablePhone: tablePhone,
             tableDate: tableDate,
-            tableTime: tableTime,
-            tablePeople: tablePeople
+            tablePeople: tablePeople,
+            tableId: selectedTableId
           });
           alert(`Thank you, ${tableName}! Your table booking has been placed. We will contact you at ${tablePhone} for further details.`);
           modals.bookTable.style.display = "none";
+          updateTableStatus();
         } catch (e) {
           console.error("Error adding document: ", e);
           alert("There was an error placing your table booking. Please try again.");
         }
+      } else {
+        alert("Please fill in all fields and select a table.");
       }
+    });
+
+    async function updateTableStatus() {
+      const tables = document.querySelectorAll('.table');
+      tables.forEach(table => {
+        table.classList.remove('booked');
+        table.classList.add('available');
+      });
+
+      const tableDate = new Date().toISOString().split('T')[0];
+
+      const q = query(collection(db, "tableBookings"), where("tableDate", "==", tableDate));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const tableId = doc.data().tableId;
+        const tableElement = document.getElementById(`table${tableId}`);
+        if (tableElement) {
+          tableElement.classList.remove('available');
+          tableElement.classList.add('booked');
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      updateTableStatus();
     });
   </script>
   <script src="./assets/js/script.js"></script>
