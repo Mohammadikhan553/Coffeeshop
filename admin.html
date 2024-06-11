@@ -7,9 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
   <link rel="stylesheet" href="./assets/css/style.css">
-  <meta charset="UTF-8">
   <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Oswald:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,46 +19,61 @@
       margin: 0;
       padding: 0;
     }
+
     .container {
       width: 80%;
       margin: auto;
       padding: 20px;
     }
-    h1, h2 {
+
+    h1,
+    h2 {
       text-align: center;
       margin-bottom: 20px;
       font-family: 'Oswald', sans-serif;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
     }
-    table, th, td {
+
+    table,
+    th,
+    td {
       border: 1px solid #000000;
     }
-    th, td {
+
+    th,
+    td {
       padding: 10px;
       text-align: left;
     }
+
     th {
       background-color: #000000;
+      color: white;
       font-family: 'Oswald', sans-serif;
     }
+
     .status-btn {
       padding: 5px 10px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
+
     .status-btn.pending {
       background-color: #ffc107;
       color: white;
     }
+
     .status-btn.done {
       background-color: #28a745;
       color: white;
     }
+
     .remove-btn {
       padding: 5px 10px;
       border: none;
@@ -69,6 +82,7 @@
       background-color: #dc3545;
       color: white;
     }
+
     .remove-btn:hover {
       background-color: #c82333;
     }
@@ -143,8 +157,8 @@
           <th>Name</th>
           <th>Phone</th>
           <th>Date</th>
-          <th>Time</th>
           <th>People</th>
+          <th>Table ID</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
@@ -155,28 +169,22 @@
   </div>
 
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-    
-    // Your web app's Firebase configuration
+
     const firebaseConfig = {
-        apiKey: "AIzaSyBp9avW_4FTQJfepzIe4NjJYXB1RNdgqi4",
-        authDomain: "coffeeshopproject-b197f.firebaseapp.com",
-        projectId: "coffeeshopproject-b197f",
-        storageBucket: "coffeeshopproject-b197f.appspot.com",
-        messagingSenderId: "489374523749",
-        appId: "1:489374523749:web:0901fb66db31167793418c",
-        measurementId: "G-6CYRCK554P"
+      apiKey: "AIzaSyBp9avW_4FTQJfepzIe4NjJYXB1RNdgqi4",
+      authDomain: "coffeeshopproject-b197f.firebaseapp.com",
+      projectId: "coffeeshopproject-b197f",
+      storageBucket: "coffeeshopproject-b197f.appspot.com",
+      messagingSenderId: "489374523749",
+      appId: "1:489374523749:web:0901fb66db31167793418c",
+      measurementId: "G-6CYRCK554P"
+    };
 
-        };
-
-
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Fetch and display orders
     async function fetchOrders() {
       const ordersCollection = collection(db, 'orders');
       const ordersSnapshot = await getDocs(ordersCollection);
@@ -202,7 +210,6 @@
       });
     }
 
-    // Fetch and display table bookings
     async function fetchBookings() {
       const bookingsCollection = collection(db, 'tableBookings');
       const bookingsSnapshot = await getDocs(bookingsCollection);
@@ -217,8 +224,8 @@
           <td>${booking.tableName}</td>
           <td>${booking.tablePhone}</td>
           <td>${booking.tableDate}</td>
-          <td>${booking.tableTime}</td>
           <td>${booking.tablePeople}</td>
+          <td>${booking.tableId}</td>
           <td><button class="status-btn ${booking.status === 'done' ? 'done' : 'pending'}" onclick="updateBookingStatus('${bookingId}', '${booking.status === 'done' ? 'pending' : 'done'}')">${booking.status === 'done' ? 'Done' : 'Pending'}</button></td>
           <td><button class="remove-btn" onclick="removeBooking('${bookingId}')">Remove</button></td>
         </tr>`;
@@ -226,39 +233,33 @@
       });
     }
 
-    // Update order status
     async function updateOrderStatus(orderId, status) {
       const orderDoc = doc(db, 'orders', orderId);
       await updateDoc(orderDoc, { status: status });
       fetchOrders();
     }
 
-    // Update booking status
     async function updateBookingStatus(bookingId, status) {
       const bookingDoc = doc(db, 'tableBookings', bookingId);
       await updateDoc(bookingDoc, { status: status });
       fetchBookings();
     }
 
-    // Remove order
     async function removeOrder(orderId) {
       const orderDoc = doc(db, 'orders', orderId);
       await deleteDoc(orderDoc);
       fetchOrders();
     }
 
-    // Remove booking
     async function removeBooking(bookingId) {
       const bookingDoc = doc(db, 'tableBookings', bookingId);
       await deleteDoc(bookingDoc);
       fetchBookings();
     }
 
-    // Initial fetch
     fetchOrders();
     fetchBookings();
 
-    // Make functions accessible globally
     window.updateOrderStatus = updateOrderStatus;
     window.updateBookingStatus = updateBookingStatus;
     window.removeOrder = removeOrder;
