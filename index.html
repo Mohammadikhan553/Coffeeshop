@@ -548,6 +548,12 @@
         <input type="text" id="tablePhone" name="tablePhone" placeholder="Enter your phone number" pattern="\d{10}" title="Enter a valid 10-digit phone number" required>
         <input type="hidden" id="tableDate" name="tableDate">
         <input type="number" id="tablePeople" name="tablePeople" placeholder="Number of people" required>
+        <label for="tablePaymentMethod">Payment Method:</label>
+        <select id="tablePaymentMethod" name="tablePaymentMethod" required>
+          <option value="Cash on Arrival">Cash on Arrival</option>
+          <option value="Credit/Debit Card">Credit/Debit Card</option>
+          <option value="UPI">UPI</option>
+        </select>
         <button type="button" class="proceed-btn" id="proceedBookTable">Proceed</button>
       </form>
     </div>
@@ -602,7 +608,7 @@
       });
     }
 
-    function removeItem(index) {
+    window.removeItem = function(index) {
       totalItems -= 1;
       totalAmount -= cartItems[index].price;
       cartItems.splice(index, 1);
@@ -694,15 +700,17 @@
       const tableDate = new Date().toISOString().split('T')[0];
       const tablePeople = document.getElementById('tablePeople').value;
       const selectedTableId = document.getElementById('selectedTable').value;
+      const tablePaymentMethod = document.getElementById('tablePaymentMethod').value;
 
-      if (tableName && tablePhone && tableDate && tablePeople && selectedTableId) {
+      if (tableName && tablePhone && tableDate && tablePeople && selectedTableId && tablePaymentMethod) {
         try {
           await addDoc(collection(db, "tableBookings"), {
             tableName: tableName,
             tablePhone: tablePhone,
             tableDate: tableDate,
             tablePeople: tablePeople,
-            tableId: selectedTableId
+            tableId: selectedTableId,
+            paymentMethod: tablePaymentMethod
           });
           alert(`Thank you, ${tableName}! Your table booking has been placed. We will contact you at ${tablePhone} for further details.`);
           modals.bookTable.style.display = "none";
