@@ -159,6 +159,7 @@
           <th>Date</th>
           <th>People</th>
           <th>Table ID</th>
+          <th>Payment Method</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
@@ -226,6 +227,7 @@
           <td>${booking.tableDate}</td>
           <td>${booking.tablePeople}</td>
           <td>${booking.tableId}</td>
+          <td>${booking.paymentMethod}</td>
           <td><button class="status-btn ${booking.status === 'done' ? 'done' : 'pending'}" onclick="updateBookingStatus('${bookingId}', '${booking.status === 'done' ? 'pending' : 'done'}')">${booking.status === 'done' ? 'Done' : 'Pending'}</button></td>
           <td><button class="remove-btn" onclick="removeBooking('${bookingId}')">Remove</button></td>
         </tr>`;
